@@ -1,0 +1,31 @@
+$faded-green: transparentize($green, 0.2);
+.Item {
+  font: 700 13px/1.45 Courier;
+  color: white;
+}
+
+.Belt .Item {
+  border-top: 1px $faded-green dashed;
+  margin-top: 8px;
+  color: $green;
+  padding: 8px 0 48px;
+  min-height: 96px;
+
+  &::before {
+    content: attr(data-type);
+    color: $faded-green;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+
+
+  .Item-block {
+    max-width: 75%;
+
+    &::before {
+      content: attr(data-label)":\2002";
+      color: white;
+    }
+  }
+}

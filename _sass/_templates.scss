@@ -1,0 +1,128 @@
+.Template {
+  border-radius: 2px;
+  border: 1px $light-grey solid;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 2px transparentize(#001, 0.75);
+  animation: 450ms ease-in fadeup;
+  transition: 400ms width ease-out;
+  width: auto;
+}
+
+.Template-block {
+  display: inline-block;
+  vertical-align: top;
+  background-clip: content-box;
+  background-color: transparent;
+  font-size: 1rem;
+  transition: 300ms background-color, 300ms min-height ease-out, 300ms width ease-out;
+  min-height: 0;
+  width: auto;
+}
+
+.Template-row {
+  font-size: 0;
+
+  &[class*="txt-"] {
+    padding: 16px 16px 0;
+
+    &:last-child {
+      padding-bottom: 16px;
+    }
+  }
+}
+
+.Template--poster.is-empty {
+  width: 256px;
+}
+
+.Template.is-empty .Template-block {
+  background-color: $light-grey;
+  color: $light-grey;
+}
+
+.Template.is-empty svg {
+  display: none;
+}
+
+// Template animations
+@keyframes fadeup {
+  0% {
+    transform: translateY(48px);
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+// Template sizing utilities
+.r-reverse {
+  text-align: right;
+}
+
+.Template.is-empty {
+  .h-lg {
+    height: 210px;
+  }
+
+  .h-md {
+    height: 100px;
+  }
+
+  .h-sm {
+    height: 60px;
+  }
+
+  .h-xs {
+    height: 25px;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.mw-40 {
+  min-width: 40%;
+}
+
+// Image utilities
+.i-square,
+.i-wide {
+  fill: currentColor;
+  max-width: 100%;
+}
+
+.i-1x {
+  height: 32px;
+  margin: 8px;
+}
+
+.i-2x {
+  height: 64px;
+  margin: 16px;
+}
+
+.i-3x {
+  height: 96px;
+  margin: 24px;
+}
+
+.i-4x {
+  height: 128px;
+  margin: 32px;
+}
+
+.i-full {
+  width: 256px;
+  margin: 16px 16px 32px;
+}

@@ -4,8 +4,78 @@
     <meta charset="utf-8">
     <title>Design Factory</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i|Montserrat:300i,700|Space+Mono:700" rel="stylesheet">
   </head>
   <body>
-    <p>Hello World</p>
+    <div id="cursor" class="Cursor"></div>
+
+    <div id="bottomMarquee" class="Marquee">
+      {% for string in site.data.marquee.strings %}
+        {{ string }} &bull;
+      {% endfor %}
+    </div>
+    <div id="bgMarquee" class="BackgroundScroll">
+      {% for string in site.data.reality.strings %}
+        {{ string }} &bull;
+      {% endfor %}
+    </div>
+    <div class="Container">
+      <div class="Module Module--topRight">
+        <div id="timer" class="Module-timer"></div>
+        <div class="Module-profile">
+          <div class="Module-profileInfo">
+            <p>Welcome back</p>
+            <p>You are logged in</p>
+          </div>
+          <img src="/img/profilepic.png" alt="">
+        </div>
+      </div>
+      <div class="Module Module--right">
+        <div class="Module-submitButton">
+          Submit ^ Submit
+        </div>
+      </div>
+      <div class="Module Module--bottomRight"></div>
+      <div class="Belt">
+        <div id="items" class="Belt-items">
+          {% assign shuffled_items = site.items | shuffle %}
+          {% for item in shuffled_items %}
+          <ol data-type="{{ item.type }}" class="Item">
+            {% for block in item.blocks %}
+            <li data-label="{{ block.label }}" class="Item-block">
+              {{ block.data }}
+            </li>
+            {% endfor %}
+          </ol>
+          {% endfor %}
+        </div>
+      </div>
+      <div id="workbench" class="WorkBench"></div>
+    </div>
+    <div id="reference" class="Reference">
+      {% for template in site.templates %}
+      {{ template.content }}
+      {% endfor %}
+    </div>
+    <script src="js/vendor/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script src="js/vendor/marquee.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $('#bottomMarquee').marquee({
+        duration: document.getElementById('bottomMarquee').innerText.length * 40,
+        delayBeforeStart: 0,
+        gap: 48,
+        duplicated: true
+      });
+
+      $('#bgMarquee').marquee({
+        duration: document.getElementById('bgMarquee').offsetHeight * 30,
+        direction: 'down',
+        delayBeforeStart: 0,
+        gap: 0,
+        duplicated: true,
+        startVisible: true
+      });
+    </script>
+    <script src="js/main.js" charset="utf-8"></script>
   </body>
 </html>

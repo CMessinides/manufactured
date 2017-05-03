@@ -1,0 +1,69 @@
+body {
+  overflow: hidden;
+}
+
+.Container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  font-size: 0;
+  height: 100vh;
+}
+
+.Marquee {
+  position: absolute;
+  color: white;
+  font: 700 14px/16px $ff-sans;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  border-top: 4px lighten(blue, 25) solid;
+  background-color: blue;
+  z-index: 3;
+  padding: 8px 16px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 8px transparentize(#001, 0.65);
+}
+
+.BackgroundScroll {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -48px;
+  z-index: 1;
+  background-color: rgb(83, 91, 106);
+  color: darken(rgb(83,91,106), 9);
+  font: 400 italic 17px/20px $ff-sans;
+}
+
+.Cursor {
+  height: 50px;
+  width: 50px;
+  background-image: url('/img/cursor.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  transition: 500ms transform ease-out 300ms;
+}
+
+.Belt {
+  width: 20%;
+  min-width: 260px;
+  flex: 2 0 auto;
+  background: linear-gradient(45deg, $dark-grey, lighten($dark-grey, 10));
+}
+
+.WorkBench {
+  width: 80%;
+  flex: 8 1 auto;
+}
+
+.Reference {
+  display: none;
+}

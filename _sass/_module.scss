@@ -1,0 +1,64 @@
+.Module {
+  position: absolute;
+  width: auto;
+  font: 1rem/1.2 Courier;
+  text-shadow: 0 1px 6px transparentize(#001, 0.55);
+  color: white;
+  text-align: right;
+  z-index: 3;
+}
+
+.Module--right {
+  right: 16px;
+}
+
+.Module--topRight {
+  top: 16px;
+  right: 16px;
+}
+
+.Module--bottomRight {
+  bottom: 32px;
+  right: 16px;
+}
+
+.Module-timer {
+  font-weight: 700;
+  font-size: 2em;
+}
+
+.Module-profile {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  img {
+    flex: 0 auto;
+    height: 48px;
+    width: auto;
+    margin-right: -8px;
+  }
+}
+
+.Module-profileInfo {
+  font-family: $ff-sans;
+  opacity: 0.75;
+  width: 20em;
+  flex: 0 auto;
+
+  p:first-child {
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+  }
+
+  p:last-child {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+}
+
+.Module-submitButton {
+  padding: 16px 0;
+  transform: translate(-50%) rotate(90deg);
+}
