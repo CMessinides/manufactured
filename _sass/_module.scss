@@ -9,7 +9,13 @@
 }
 
 .Module--right {
-  right: 16px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .Module--topRight {
@@ -59,6 +65,16 @@
 }
 
 .Module-submitButton {
-  padding: 16px 0;
-  transform: translate(-50%) rotate(90deg);
+  font: 700 14px/1 $ff-sans;
+  color: $green;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  position: absolute;
+  padding: 16px 32px;
+  border-radius: 2px;
+  background-color: #001;
+  transform: rotate(90deg);
+  transform-origin: top center;
+  white-space: nowrap;
+  box-shadow: 2px 0 8px transparentize(#001, 0.65);
 }

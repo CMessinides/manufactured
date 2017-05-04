@@ -128,54 +128,8 @@ var glitchChars = [
   'ⵖ'
 ];
 
-var Cursor = {
-  el: document.getElementById('cursor'),
-  x: 0,
-  y: 0,
-  setPace: function(vec1,vec2) {
-    this.el.style.transitionDuration = (Math.floor(Math.sqrt(Math.pow(vec1, 2) + Math.pow(vec2, 2))) * 3).toString() + 'ms';
-    this.el.style.transitionDelay = _getRandomInt(180, 500) + 'ms';
-  },
-  moveTo: function(target) {
-    var minX = target.offsetLeft,
-        maxX = minX + target.offsetWidth - 0.5 * this.el.offsetWidth,
-        minY = target.offsetTop,
-        maxY = minY + target.offsetHeight - 0.5 * this.el.offsetHeight,
-        targetX = _getRandomInt(minX, maxX),
-        targetY = _getRandomInt(minY, maxY),
-        vec1 = Math.abs(this.x - targetX),
-        vec2 = Math.abs(this.y - targetY);
-    this.setPace(vec1, vec2);
-    this.x = targetX;
-    this.y = targetY;
-    this.el.style.transform = 'translate(' + this.x + 'px,' + this.y + 'px)';
-  }
-}
-
 // run the timer
 window.setInterval(function() { timer.innerText = (new Date()).toLocaleTimeString() }, 1000);
-
-function Item(el) {
-  this.type = el.getAttribute('data-type');
-  this.data = {};
-
-  for (var i = 0; i < el.children.length; i++) {
-    this.data[el.children[i].getAttribute('data-label')] = el.children[i].innerText.trim();
-  }
-}
-
-Item.prototype.compose = function(template) {
-  var blanks = template.querySelectorAll('[data-label]');
-
-  for (var i = 0; i < blanks.length; i++) {
-    var label = blanks[i].getAttribute('data-label');
-    if (this.data[label]) {
-      blanks[i].innerText = this.data[label];
-    }
-  }
-
-  return template;
-}
 
 function Composition(item, template) {
   this.item = item;
