@@ -1,0 +1,19 @@
+{
+  "name": "DesignFact",
+  "version": "1.0.0",
+  "description": "A little art project",
+  "main": "_site/js/main.bundle.js",
+  "repository": "git@github.com:CMessinides/manufactured.git",
+  "author": "Cameron Messinides <cameron.messinides@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "webpack": "^2.4.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jquery.marquee": "^1.3.94"
+  }
+}
