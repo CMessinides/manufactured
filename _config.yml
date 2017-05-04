@@ -35,9 +35,7 @@ exclude:
   - webpack.config.js
   - package.json
   - yarn.lock
-  - js
-keep:
-  - js
+  - src
 
 # Collections
 collections:
