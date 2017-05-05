@@ -1,6 +1,6 @@
 $faded-green: transparentize($green, 0.2);
 .Item {
-  font: 700 13px/1.45 Courier;
+  font: 700 13px/1.45 $ff-mono;
   color: white;
 }
 
@@ -21,8 +21,9 @@ $faded-green: transparentize($green, 0.2);
 
 
   .Item-block {
-    max-width: 75%;
-
+    padding-left: 8px;
+    margin-top: 4px;
+    border-left: 2px $faded-green solid;
     &::before {
       content: attr(data-label)":\2002";
       color: white;

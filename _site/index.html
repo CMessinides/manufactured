@@ -7,16 +7,26 @@
     <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i|Montserrat:300i,700|Space+Mono:700" rel="stylesheet">
   </head>
   <body>
-    <div id="cursor" class="Cursor"></div>
+    <div id="cursor" class="Cursor">
+      <img src="/img/cursor.png" alt="">
+    </div>
 
-    <div id="bottomMarquee" class="Marquee">
-      
+    <div class="Marquee">
+      <div class="Logo">
+        <svg viewBox="8,8,64,32">
+          <use xlink:href="img/symbols/Symbols.svg#Cascade">
+        </svg>
+        <span>Cascade News</span>
+      </div>
+      <div id="bottomMarquee">
+        
         The cows are dying &bull;
-      
+        
         At 4:35 A.M. approximately 300,0000 G.I. Joe miniature figures were stolen from the Toys-R-Us on East Blvd. &bull;
-      
+        
         Sign up now for a chance at a brand new Amazon Cascade (valued at $350 USD)! &bull;
-      
+        
+      </div>
     </div>
     <div id="bgMarquee" class="BackgroundScroll">
       
@@ -226,22 +236,6 @@
       
     </div>
     <div class="Container">
-      <div class="Module Module--topRight">
-        <div id="timer" class="Module-timer"></div>
-        <div class="Module-profile">
-          <div class="Module-profileInfo">
-            <p>Welcome back</p>
-            <p>You are logged in</p>
-          </div>
-          <img src="/img/profilepic.png" alt="">
-        </div>
-      </div>
-      <div class="Module Module--right">
-        <div class="Module-submitButton">
-          Export &#8285;
-        </div>
-      </div>
-      <div class="Module Module--bottomRight"></div>
       <div class="Belt">
         <div id="items" class="Belt-items">
           
@@ -253,67 +247,7 @@
             </li>
             
             <li data-label="body" class="Item-block">
-              Good design makes a product useful.
-            </li>
-            
-          </ol>
-          
-          <ol data-type="quote" class="Item">
-            
-            <li data-label="author" class="Item-block">
-              Dieter Rams
-            </li>
-            
-            <li data-label="body" class="Item-block">
-              Good design is innovative.
-            </li>
-            
-          </ol>
-          
-          <ol data-type="quote" class="Item">
-            
-            <li data-label="author" class="Item-block">
-              Dieter Rams
-            </li>
-            
-            <li data-label="body" class="Item-block">
-              Good design makes a product understandable.
-            </li>
-            
-          </ol>
-          
-          <ol data-type="quote" class="Item">
-            
-            <li data-label="author" class="Item-block">
-              Dieter Rams
-            </li>
-            
-            <li data-label="body" class="Item-block">
               Good design is as little design as possible.
-            </li>
-            
-          </ol>
-          
-          <ol data-type="quote" class="Item">
-            
-            <li data-label="author" class="Item-block">
-              Dieter Rams
-            </li>
-            
-            <li data-label="body" class="Item-block">
-              Good design is thorough down to the last detail.
-            </li>
-            
-          </ol>
-          
-          <ol data-type="quote" class="Item">
-            
-            <li data-label="author" class="Item-block">
-              Dieter Rams
-            </li>
-            
-            <li data-label="body" class="Item-block">
-              Good design is aesthetic.
             </li>
             
           </ol>
@@ -337,7 +271,79 @@
             </li>
             
             <li data-label="body" class="Item-block">
+              Good design is unobtrusive.
+            </li>
+            
+          </ol>
+          
+          <ol data-type="quote" class="Item">
+            
+            <li data-label="author" class="Item-block">
+              Dieter Rams
+            </li>
+            
+            <li data-label="body" class="Item-block">
+              Good design is aesthetic.
+            </li>
+            
+          </ol>
+          
+          <ol data-type="quote" class="Item">
+            
+            <li data-label="author" class="Item-block">
+              Dieter Rams
+            </li>
+            
+            <li data-label="body" class="Item-block">
+              Good design makes a product understandable.
+            </li>
+            
+          </ol>
+          
+          <ol data-type="quote" class="Item">
+            
+            <li data-label="author" class="Item-block">
+              Dieter Rams
+            </li>
+            
+            <li data-label="body" class="Item-block">
+              Good design is thorough down to the last detail.
+            </li>
+            
+          </ol>
+          
+          <ol data-type="quote" class="Item">
+            
+            <li data-label="author" class="Item-block">
+              Dieter Rams
+            </li>
+            
+            <li data-label="body" class="Item-block">
+              Good design is innovative.
+            </li>
+            
+          </ol>
+          
+          <ol data-type="quote" class="Item">
+            
+            <li data-label="author" class="Item-block">
+              Dieter Rams
+            </li>
+            
+            <li data-label="body" class="Item-block">
               Good design is environmentally friendly.
+            </li>
+            
+          </ol>
+          
+          <ol data-type="quote" class="Item">
+            
+            <li data-label="author" class="Item-block">
+              Dieter Rams
+            </li>
+            
+            <li data-label="body" class="Item-block">
+              Good design makes a product useful.
             </li>
             
           </ol>
@@ -354,21 +360,43 @@
             
           </ol>
           
-          <ol data-type="quote" class="Item">
-            
-            <li data-label="author" class="Item-block">
-              Dieter Rams
-            </li>
-            
-            <li data-label="body" class="Item-block">
-              Good design is unobtrusive.
-            </li>
-            
-          </ol>
-          
         </div>
       </div>
       <div id="workbench" class="WorkBench"></div>
+      <div class="Modules">
+        <div class="Module">
+          <div id="moduleClock" class="Module-clock"></div>
+          <div class="Module-profile">
+            <div class="Module-profileInfo">
+              <p>Welcome back</p>
+              <p>You are <u>logged in</u></p>
+              <p>MagicMarketer v3.4.2b</p>
+            </div>
+            <img src="/img/profilepic.png" alt="">
+          </div>
+        </div>
+        <div class="Module">
+          <div class="Module-inspiration" id="moduleInspo">
+            <div class="header">QuoteDeck</div>
+            <div class="content">
+            </div>
+            <div class="footer">
+              <span>Powered by</span>
+              <svg viewBox="8,8,64,32">
+                <use xlink:href="img/symbols/Symbols.svg#Cascade">
+              </svg>
+            </div>
+          </div>
+          <div class="Module-buttons">
+            <div class="Module-button Module-button--ghost">
+              Recolor
+            </div>
+            <div class="Module-button">
+              Export&ensp;&#10095;
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="reference" class="Reference">
       
@@ -388,7 +416,7 @@
 
       
     </div>
-    <script src="js/vendor/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script src="js/vendor/jquery.js" charset="utf-8"></script>
     <script src="js/vendor/marquee.js" charset="utf-8"></script>
     <script type="text/javascript">
       $('#bottomMarquee').marquee({
@@ -407,6 +435,6 @@
         startVisible: true
       });
     </script>
-    <script src="js/main.js" charset="utf-8"></script>
+    <script src="js/main.bundle.js" charset="utf-8"></script>
   </body>
 </html>

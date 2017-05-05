@@ -7,12 +7,22 @@
     <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i|Montserrat:300i,700|Space+Mono:700" rel="stylesheet">
   </head>
   <body>
-    <div id="cursor" class="Cursor"></div>
+    <div id="cursor" class="Cursor">
+      <img src="/img/cursor.png" alt="">
+    </div>
 
-    <div id="bottomMarquee" class="Marquee">
-      {% for string in site.data.marquee.strings %}
+    <div class="Marquee">
+      <div class="Logo">
+        <svg viewBox="8,8,64,32">
+          <use xlink:href="img/symbols/Symbols.svg#Cascade">
+        </svg>
+        <span>Cascade News</span>
+      </div>
+      <div id="bottomMarquee">
+        {% for string in site.data.marquee.strings %}
         {{ string }} &bull;
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
     <div id="bgMarquee" class="BackgroundScroll">
       {% for string in site.data.reality.strings %}
@@ -20,22 +30,6 @@
       {% endfor %}
     </div>
     <div class="Container">
-      <div class="Module Module--topRight">
-        <div id="timer" class="Module-timer"></div>
-        <div class="Module-profile">
-          <div class="Module-profileInfo">
-            <p>Welcome back</p>
-            <p>You are logged in</p>
-          </div>
-          <img src="/img/profilepic.png" alt="">
-        </div>
-      </div>
-      <div class="Module Module--right">
-        <div class="Module-submitButton">
-          Export &#8285;
-        </div>
-      </div>
-      <div class="Module Module--bottomRight"></div>
       <div class="Belt">
         <div id="items" class="Belt-items">
           {% assign shuffled_items = site.items | shuffle %}
@@ -51,14 +45,48 @@
         </div>
       </div>
       <div id="workbench" class="WorkBench"></div>
+      <div class="Modules">
+        <div class="Module">
+          <div id="moduleClock" class="Module-clock"></div>
+          <div class="Module-profile">
+            <div class="Module-profileInfo">
+              <p>Welcome back</p>
+              <p>You are <u>logged in</u></p>
+              <p>MagicMarketer v3.4.2b</p>
+            </div>
+            <img src="/img/profilepic.png" alt="">
+          </div>
+        </div>
+        <div class="Module">
+          <div class="Module-inspiration" id="moduleInspo">
+            <div class="header">QuoteDeck</div>
+            <div class="content">
+            </div>
+            <div class="footer">
+              <span>Powered by</span>
+              <svg viewBox="8,8,64,32">
+                <use xlink:href="img/symbols/Symbols.svg#Cascade">
+              </svg>
+            </div>
+          </div>
+          <div class="Module-buttons">
+            <div class="Module-button Module-button--ghost">
+              Recolor
+            </div>
+            <div class="Module-button">
+              Export&ensp;&#10095;
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="reference" class="Reference">
       {% for template in site.templates %}
       {{ template.content }}
       {% endfor %}
     </div>
-    <script src="js/main.bundle.js" charset="utf-8"></script>
-    <script src="js/custom-marquee.js" charset="utf-8"></script>
+    <script src="js/vendor/jquery.js" charset="utf-8"></script>
+    <script src="js/vendor/marquee.js" charset="utf-8"></script>
     <script type="text/javascript">
       $('#bottomMarquee').marquee({
         duration: document.getElementById('bottomMarquee').innerText.length * 40,
@@ -76,5 +104,6 @@
         startVisible: true
       });
     </script>
+    <script src="js/main.bundle.js" charset="utf-8"></script>
   </body>
 </html>

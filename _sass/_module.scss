@@ -1,21 +1,15 @@
 .Module {
-  position: absolute;
   width: auto;
-  font: 1rem/1.2 Courier;
+  font: 1rem/1.2 $ff-mono;
   text-shadow: 0 1px 6px transparentize(#001, 0.55);
   color: white;
   text-align: right;
-  z-index: 3;
 }
 
 .Module--right {
-  right: 0;
-  top: 0;
-  bottom: 0;
+  right: 16px;
+  bottom: 48px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .Module--topRight {
@@ -28,7 +22,8 @@
   right: 16px;
 }
 
-.Module-timer {
+.Module-clock {
+  color: $green;
   font-weight: 700;
   font-size: 2em;
 }
@@ -40,16 +35,15 @@
 
   img {
     flex: 0 auto;
-    height: 48px;
+    height: 64px;
     width: auto;
-    margin-right: -8px;
+    margin-right: -12px;
   }
 }
 
 .Module-profileInfo {
   font-family: $ff-sans;
-  opacity: 0.75;
-  width: 20em;
+  max-width: 20em;
   flex: 0 auto;
 
   p:first-child {
@@ -58,23 +52,123 @@
     font-weight: 700;
   }
 
-  p:last-child {
+  p:not(:first-child) {
+    opacity: 0.75;
     font-style: italic;
     font-size: 0.8em;
   }
 }
 
-.Module-submitButton {
-  font: 700 14px/1 $ff-sans;
-  color: $green;
+.Module-inspiration {
+  margin-left: auto;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  max-width: 195px;
+  overflow: hidden;
+  background: linear-gradient(-5deg, rgba(220,225,235,0.9), rgba(255,255,255,0.75));
+  font: 12px/1.25 $ff-sans;
+  text-align: left;
+  color: $grey;
+  text-shadow: none;
+  box-shadow: 2px 0 8px transparentize(#001, 0.65);
+
+  .header,
+  .footer {
+    padding: 7px 10px;
+  }
+
+  .header {
+    font-weight: 700;
+    position: relative;
+    background-color: $brand-blue;
+    color: transparentize(#fff, 0.15);
+    box-shadow: 0 1px 4px transparentize(#001, 0.8);
+
+    &::after {
+      content: '\2699';
+      position: absolute;
+      right: 10px;
+      opacity: 0.75;
+    }
+  }
+
+  .content {
+    overflow-y: hidden;
+    margin: 21px 0;
+    padding: 0 10px;
+    text-align: center;
+    transition: 180ms min-height ease-out;
+  }
+
+  .inner {
+    transition: 300ms opacity 180ms;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .inner:first-child {
+    opacity: 1;
+    position: static;
+  }
+
+  .body {
+    font-size: 1.2em;
+    font-style: italic;
+  }
+
+  .attribution {
+    font-size: 0.85em;
+    margin-top: 7px;
+    font-weight: 700;
+    color: $brand-blue;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-style: italic;
+
+    span {
+      opacity: 0.7;
+    }
+
+    svg {
+      height: 1em;
+      width: auto;
+      margin-right: 2px;
+      margin-left: 6px;
+      fill: $brand-blue;
+    }
+  }
+}
+
+.Module-buttons {
+  text-shadow: none;
+  display: flex;
+  justify-content: flex-end;
+  font: 700 14px/1 $ff-mono;
+}
+
+.Module-button {
+  flex: 0 auto;
+  color: #001;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  position: absolute;
-  padding: 16px 32px;
+  padding: 8px 12px;
   border-radius: 2px;
-  background-color: #001;
-  transform: rotate(90deg);
-  transform-origin: top center;
+  background-color: transparentize($green, 0.25);
   white-space: nowrap;
   box-shadow: 2px 0 8px transparentize(#001, 0.65);
+  border: 2px $green solid;
+
+  &:not(:first-child) {
+    margin-left: 8px;
+  }
+}
+
+.Module-button--ghost {
+  background-color: transparent;
+  color: $green;
 }

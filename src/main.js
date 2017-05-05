@@ -1,3 +1,7 @@
+import { ModuleController } from './components/module-controller';
+import { Composer } from './components/composer';
+(new ModuleController()).start();
+var composer = new Composer();
 var items = document.getElementById('items');
 var workbench = document.getElementById('workbench');
 var reference = document.getElementById('reference');
@@ -128,8 +132,27 @@ var glitchChars = [
   'ⵖ'
 ];
 
-// run the timer
-window.setInterval(function() { timer.innerText = (new Date()).toLocaleTimeString() }, 1000);
+function Item(el) {
+  this.type = el.getAttribute('data-type');
+  this.data = {};
+
+  for (var i = 0; i < el.children.length; i++) {
+    this.data[el.children[i].getAttribute('data-label')] = el.children[i].innerText.trim();
+  }
+}
+
+Item.prototype.compose = function(template) {
+  var blanks = template.querySelectorAll('[data-label]');
+
+  for (var i = 0; i < blanks.length; i++) {
+    var label = blanks[i].getAttribute('data-label');
+    if (this.data[label]) {
+      blanks[i].innerText = this.data[label];
+    }
+  }
+
+  return template;
+}
 
 function Composition(item, template) {
   this.item = item;
@@ -203,31 +226,6 @@ function insertImages(el) {
   }
 }
 
-var TemplateFactory = {
-  templates: {
-    quote: document.querySelectorAll('#reference [data-type*=quote]'),
-    info: document.querySelectorAll('#reference [data-type*=info]'),
-    promo: document.querySelectorAll('#reference [data-type*=promo]'),
-    email: document.querySelectorAll('#reference [data-type*=email]')
-  },
-}
-
-var Composer = {
-  current: null,
-
-  build: function() {
-
-  },
-
-  place: function() {
-
-  },
-
-  animate: function() {
-
-  }
-};
-
 var Program = {
   run: function() {
 
@@ -241,14 +239,3 @@ var Program = {
 
   }
 };
-
-// Utilities
-function _randomSelect(array) {
-  return array[Math.floor(Math.random()*array.length)];
-}
-
-function _getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}

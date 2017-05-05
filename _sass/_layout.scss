@@ -12,18 +12,41 @@ body {
 
 .Marquee {
   position: absolute;
-  color: white;
   font: 700 14px/16px $ff-sans;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  border-top: 4px lighten(blue, 25) solid;
-  background-color: blue;
+  color: transparentize(#fff, 0.15);
+  border-top: 4px lighten($brand-blue, 15) solid;
+  background-color: $brand-blue;
   z-index: 3;
   padding: 8px 16px;
   bottom: 0;
   left: 0;
   right: 0;
   box-shadow: 0 2px 8px transparentize(#001, 0.65);
+
+  .Logo {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    padding: 8px 48px 8px 16px;
+    background: linear-gradient(90deg, $brand-blue 85%, transparent);
+    font-style: italic;
+    font-size: 16px;
+    text-shadow: 1px 1px darken($brand-blue, 20);
+
+    svg {
+      height: 16px;
+      fill: currentColor;
+      padding-right: 4px;
+    }
+  }
 }
 
 .BackgroundScroll {
@@ -41,27 +64,50 @@ body {
 .Cursor {
   height: 50px;
   width: 50px;
-  background-image: url('/img/cursor.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 5;
   transition: 500ms transform ease-out 300ms;
+
+  img {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: transparentize(#fff, 0.4);
+    position: absolute;
+    z-index: 4;
+    opacity: 0;
+  }
 }
 
 .Belt {
   width: 20%;
-  min-width: 260px;
-  flex: 2 0 auto;
+  max-width: 240px;
+  flex: 1 0 auto;
   background: linear-gradient(45deg, $dark-grey, lighten($dark-grey, 10));
 }
 
 .WorkBench {
-  width: 80%;
-  flex: 8 1 auto;
+  width: 60%;
+  flex: 1 auto;
+}
+
+.Modules {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  // width: 20%;
+  flex: 0 auto;
+  padding: 16px 16px 52px;
 }
 
 .Reference {

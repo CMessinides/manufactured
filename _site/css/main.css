@@ -63,18 +63,37 @@ body {
 
 .Marquee {
   position: absolute;
-  color: white;
   font: 700 14px/16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  border-top: 4px #8080ff solid;
-  background-color: blue;
+  color: rgba(255, 255, 255, 0.85);
+  border-top: 4px #2440fd solid;
+  background-color: #021dd2;
   z-index: 3;
   padding: 8px 16px;
   bottom: 0;
   left: 0;
   right: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 17, 0.35); }
+  .Marquee .Logo {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    padding: 8px 48px 8px 16px;
+    background: linear-gradient(90deg, #021dd2 85%, transparent);
+    font-style: italic;
+    font-size: 16px;
+    text-shadow: 1px 1px #010f6d; }
+    .Marquee .Logo svg {
+      height: 16px;
+      fill: currentColor;
+      padding-right: 4px; }
 
 .BackgroundScroll {
   position: absolute;
@@ -90,46 +109,57 @@ body {
 .Cursor {
   height: 50px;
   width: 50px;
-  background-image: url("/img/cursor.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 5;
   transition: 500ms transform ease-out 300ms; }
+  .Cursor img {
+    width: 100%;
+    position: relative;
+    z-index: 5; }
+  .Cursor::before {
+    content: '';
+    display: block;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    z-index: 4;
+    opacity: 0; }
 
 .Belt {
   width: 20%;
-  min-width: 260px;
-  flex: 2 0 auto;
+  max-width: 240px;
+  flex: 1 0 auto;
   background: linear-gradient(45deg, #0c0d12, #202331); }
 
 .WorkBench {
-  width: 80%;
-  flex: 8 1 auto; }
+  width: 60%;
+  flex: 1 auto; }
+
+.Modules {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 0 auto;
+  padding: 16px 16px 52px; }
 
 .Reference {
   display: none; }
 
 .Module {
-  position: absolute;
   width: auto;
-  font: 1rem/1.2 Courier;
+  font: 1rem/1.2 "Space Mono", monospace;
   text-shadow: 0 1px 6px rgba(0, 0, 17, 0.45);
   color: white;
-  text-align: right;
-  z-index: 3; }
+  text-align: right; }
 
 .Module--right {
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
+  right: 16px;
+  bottom: 48px;
+  display: flex; }
 
 .Module--topRight {
   top: 16px;
@@ -139,7 +169,8 @@ body {
   bottom: 32px;
   right: 16px; }
 
-.Module-timer {
+.Module-clock {
+  color: #5cdd41;
   font-weight: 700;
   font-size: 2em; }
 
@@ -149,36 +180,109 @@ body {
   align-items: center; }
   .Module-profile img {
     flex: 0 auto;
-    height: 48px;
+    height: 64px;
     width: auto;
-    margin-right: -8px; }
+    margin-right: -12px; }
 
 .Module-profileInfo {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  opacity: 0.75;
-  width: 20em;
+  max-width: 20em;
   flex: 0 auto; }
   .Module-profileInfo p:first-child {
     text-transform: uppercase;
     letter-spacing: 0.02em;
     font-weight: 700; }
-  .Module-profileInfo p:last-child {
+  .Module-profileInfo p:not(:first-child) {
+    opacity: 0.75;
     font-style: italic;
     font-size: 0.8em; }
 
-.Module-submitButton {
-  font: 700 14px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #5cdd41;
+.Module-inspiration {
+  margin-left: auto;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  max-width: 195px;
+  overflow: hidden;
+  background: linear-gradient(-5deg, rgba(220, 225, 235, 0.9), rgba(255, 255, 255, 0.75));
+  font: 12px/1.25 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: #323342;
+  text-shadow: none;
+  box-shadow: 2px 0 8px rgba(0, 0, 17, 0.35); }
+  .Module-inspiration .header,
+  .Module-inspiration .footer {
+    padding: 7px 10px; }
+  .Module-inspiration .header {
+    font-weight: 700;
+    position: relative;
+    background-color: #021dd2;
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 1px 4px rgba(0, 0, 17, 0.2); }
+    .Module-inspiration .header::after {
+      content: '\2699';
+      position: absolute;
+      right: 10px;
+      opacity: 0.75; }
+  .Module-inspiration .content {
+    overflow-y: hidden;
+    margin: 21px 0;
+    padding: 0 10px;
+    text-align: center;
+    transition: 180ms min-height ease-out; }
+  .Module-inspiration .inner {
+    transition: 300ms opacity 180ms;
+    position: absolute;
+    opacity: 0; }
+  .Module-inspiration .inner:first-child {
+    opacity: 1;
+    position: static; }
+  .Module-inspiration .body {
+    font-size: 1.2em;
+    font-style: italic; }
+  .Module-inspiration .attribution {
+    font-size: 0.85em;
+    margin-top: 7px;
+    font-weight: 700;
+    color: #021dd2;
+    text-transform: uppercase;
+    letter-spacing: 0.1em; }
+  .Module-inspiration .footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-style: italic; }
+    .Module-inspiration .footer span {
+      opacity: 0.7; }
+    .Module-inspiration .footer svg {
+      height: 1em;
+      width: auto;
+      margin-right: 2px;
+      margin-left: 6px;
+      fill: #021dd2; }
+
+.Module-buttons {
+  text-shadow: none;
+  display: flex;
+  justify-content: flex-end;
+  font: 700 14px/1 "Space Mono", monospace; }
+
+.Module-button {
+  flex: 0 auto;
+  color: #001;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  position: absolute;
-  padding: 16px 32px;
+  padding: 8px 12px;
   border-radius: 2px;
-  background-color: #001;
-  transform: rotate(90deg);
-  transform-origin: top center;
+  background-color: rgba(92, 221, 65, 0.75);
   white-space: nowrap;
-  box-shadow: 2px 0 8px rgba(0, 0, 17, 0.35); }
+  box-shadow: 2px 0 8px rgba(0, 0, 17, 0.35);
+  border: 2px #5cdd41 solid; }
+  .Module-button:not(:first-child) {
+    margin-left: 8px; }
+
+.Module-button--ghost {
+  background-color: transparent;
+  color: #5cdd41; }
 
 .WorkBench {
   display: flex;
@@ -286,7 +390,7 @@ body {
   margin: 16px 16px 32px; }
 
 .Item {
-  font: 700 13px/1.45 Courier;
+  font: 700 13px/1.45 "Space Mono", monospace;
   color: white; }
 
 .Belt .Item {
@@ -302,7 +406,9 @@ body {
     text-transform: uppercase;
     font-size: 10px; }
   .Belt .Item .Item-block {
-    max-width: 75%; }
+    padding-left: 8px;
+    margin-top: 4px;
+    border-left: 2px rgba(92, 221, 65, 0.8) solid; }
     .Belt .Item .Item-block::before {
       content: attr(data-label) ": ";
       color: white; }
