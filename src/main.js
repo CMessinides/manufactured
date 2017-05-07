@@ -2,54 +2,7 @@ import { ModuleController } from './components/module-controller';
 import { Composer } from './components/composer';
 (new ModuleController()).start();
 var composer = new Composer();
-var items = document.getElementById('items');
-var workbench = document.getElementById('workbench');
-var reference = document.getElementById('reference');
-var timer = document.getElementById('timer');
-
-
-var imgLookup = {
-  square: [
-    {
-      id: 'Sun',
-      origin: '92 8'
-    },
-    {
-      id: 'Valley',
-      origin: '144 8'
-    },
-    {
-      id: 'Mismatch',
-      origin: '8 60'
-    },
-    {
-      id: 'Fall',
-      origin: '144 60'
-    },
-    {
-      id: 'Trap',
-      origin: '8 112'
-    },
-    {
-      id: 'Signal',
-      origin: '60 112'
-    }
-  ],
-  wide: [
-    {
-      id:'Cascade',
-      origin: '8 8'
-    },
-    {
-      id: 'Battery',
-      origin: '60 60'
-    },
-    {
-      id: 'Process',
-      origin: '112 112'
-    }
-  ]
-};
+composer.start();
 
 var glitchChars = [
   '͒',
@@ -184,14 +137,6 @@ function getItemFromBelt() {
 }
 
 // `this` refers to `var items`
-function rotateBeltItem() {
-  var item = this.firstElementChild;
-  this.classList.add('is-rotating');
-  this.removeChild(item);
-  this.style.transform = 'translateY(0)';
-  this.appendChild(item);
-  this.classList.remove('is-rotating')
-}
 
 function insertTemplate(archetype) {
   var current = document.getElementById('templateInstance');
@@ -205,25 +150,6 @@ function insertTemplate(archetype) {
   }
 
   workbench.appendChild(instance);
-}
-
-function insertImages(el) {
-  var imgContainers = {
-    square: el.getElementsByClassName('i-square'),
-    wide: el.getElementsByClassName('i-wide')
-  };
-
-  for (var type in imgContainers) {
-    for (var i = 0; i < imgContainers[type].length; i++) {
-      var container = imgContainers[type][i];
-      var size = type === 'wide' ? "64 32" : "32 32";
-      var src = _randomSelect(imgLookup[type]);
-      var img = '<use xlink:href="/img/symbols/Symbols.svg#' + src.id + '"></use>';
-
-      container.setAttribute('viewBox', src.origin + " " + size);
-      container.innerHTML = img;
-    }
-  }
 }
 
 var Program = {

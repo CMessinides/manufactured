@@ -1,8 +1,108 @@
 import { Cursor } from './cursor';
+import { Item } from './item';
+import { TemplateFactory } from './template-factory';
+import { SanityController } from './sanity-controller';
+import { _getRandomInt } from '../util';
 
 function Composer() {
-  const cursor = new Cursor('cursor', this);
-  
+  const items = document.getElementById('items'),
+      workbench = document.getElementById('workbench'),
+      reference = document.getElementById('reference'),
+      importBtn = document.getElementById('importBtn'),
+      colorBtn = document.getElementById('colorBtn'),
+      exportBtn = document.getElementById('exportBtn'),
+      cursor = new Cursor('cursor', this),
+      templateFactory = new TemplateFactory();
+
+  // this is just a proxy for the animation cycle
+  this.start = function() {
+    stepThroughCycle();
+  }
+
+  this.break = function() {
+
+  }
+
+  this.restart = function() {
+
+  }
+
+  // this is a
+  function stepThroughCycle() {
+    cursor.click(importBtn, handleNextItem, [items.firstElementChild]);
+  }
+
+  function handleNextItem(btn, target) {
+    let item = getNextItem(target);
+    let template = templateFactory.prepare(item.type);
+    let comp = item.compose(template);
+
+    comp = SanityController.filter(comp);
+    comp.addEventListener('animationend', function() {
+      revealBlocks(null, [].slice.call(comp.querySelectorAll('.Template-block')).reverse());
+    }, {once: true});
+    workbench.appendChild(comp);
+  }
+
+  function getNextItem(el) {
+    let offset = el.offsetHeight;
+    // animate the belt to hide the first item
+    items.style.transform = 'translateY(-' + offset + 'px)';
+    // wait for the transition, then remove and replace the item
+    items.addEventListener('transitionend', rotateItems, {once: true});
+    // return the item
+    return new Item(el);
+  }
+
+  function rotateItems() {
+    let i = items.firstElementChild;
+    items.removeChild(i);
+    items.style.transform = 'translateY(0)';
+    items.appendChild(i);
+  }
+
+  function revealBlocks(currentTarget, nextTargets) {
+    if (currentTarget) {
+      currentTarget.classList.add('is-revealed');
+      console.log('Current target:')
+      console.log(currentTarget);
+    }
+    if (nextTargets.length) {
+      let nextTarget = nextTargets.pop();
+      console.log('Next target:');
+      console.log(nextTarget);
+      cursor.click(nextTarget, revealBlocks, [nextTargets]);
+    } else {
+      cursor.click(colorBtn, colorItem, [
+        workbench.firstElementChild,
+        _getRandomInt(1,4)
+      ]);
+    }
+  }
+
+  function colorItem(btn, target, remainingCount) {
+    Item.prototype.color(target);
+    remainingCount--;
+    if (remainingCount) {
+      window.setTimeout(colorItem, _getRandomInt(1200,1800), btn, target, remainingCount);
+    } else {
+      window.setTimeout(
+        function() {
+          cursor.click(exportBtn, resetCycle, [target]);
+        },
+        _getRandomInt(1000,1600)
+      )
+    }
+  }
+
+  function resetCycle(btn, target) {
+    console.log(target);
+    target.classList.add('is-finished');
+    target.addEventListener('transitionend', function() {
+      workbench.removeChild(target);
+      stepThroughCycle(); // restart the whole animation process
+    },{ once: true });
+  }
 }
 
 export { Composer };

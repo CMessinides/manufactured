@@ -14,7 +14,7 @@
     <div class="Marquee">
       <div class="Logo">
         <svg viewBox="8,8,64,32">
-          <use xlink:href="img/symbols/Symbols.svg#Cascade">
+          <use xlink:href="img/symbols/Symbols.svg#Cascade"></use>
         </svg>
         <span>Cascade News</span>
       </div>
@@ -31,6 +31,10 @@
     </div>
     <div class="Container">
       <div class="Belt">
+        <div class="Belt-header">
+          <div class="Belt-title">Projects</div>
+          <div id="importBtn" class="Belt-btn">Import&ensp;&#10095;</div>
+        </div>
         <div id="items" class="Belt-items">
           {% assign shuffled_items = site.items | shuffle %}
           {% for item in shuffled_items %}
@@ -65,15 +69,15 @@
             <div class="footer">
               <span>Powered by</span>
               <svg viewBox="8,8,64,32">
-                <use xlink:href="img/symbols/Symbols.svg#Cascade">
+                <use xlink:href="img/symbols/Symbols.svg#Cascade"></use>
               </svg>
             </div>
           </div>
           <div class="Module-buttons">
-            <div class="Module-button Module-button--ghost">
-              Recolor
+            <div id="colorBtn" class="Module-button Module-button--ghost">
+              Color
             </div>
-            <div class="Module-button">
+            <div id="exportBtn" class="Module-button">
               Export&ensp;&#10095;
             </div>
           </div>

@@ -2,10 +2,44 @@
   overflow-y: hidden;
   padding: 0 16px;
   box-shadow: 4px 0 10px transparentize(#001, 0.65);
+  position: relative;
+}
+
+.Belt-header {
+  font: 700 14px/1 $ff-mono;
+  color: #001;
+  background-color: $green;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+
+  > div {
+    padding: 12px 16px;
+  }
+}
+
+.Belt-title {
+  letter-spacing: -0.02em;
+  width: 60%;
+  flex: 0 1 auto;
+}
+
+.Belt-btn {
+  background-color: #001;
+  color: $green;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex: 0 auto;
 }
 
 .Belt-items {
   transition: 300ms transform ease-out;
+  position: relative;
+  top: 38px;
+  z-index: 1;
 
   &.is-rotating {
     transition: none;

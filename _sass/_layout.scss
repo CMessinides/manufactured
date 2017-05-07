@@ -68,7 +68,8 @@ body {
   top: 0;
   left: 0;
   z-index: 5;
-  transition: 500ms transform ease-out 300ms;
+  transition-property: transform;
+  transition-timing-function: linear;
 
   img {
     width: 100%;

@@ -1,4 +1,4 @@
-function _shuffle (array) {
+function _shuffle(array) {
   var i = 0,
       j = 0,
       temp = null;
