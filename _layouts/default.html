@@ -19,8 +19,9 @@
         <span>Cascade News</span>
       </div>
       <div id="bottomMarquee">
-        {% for string in site.data.marquee.strings %}
-        {{ string }} &bull;
+        {% assign marquee_strings = site.data.marquee.strings | shuffle %}
+        {% for string in marquee_strings %}
+        {{ string }}&ensp;&bull;&ensp;
         {% endfor %}
       </div>
     </div>
@@ -93,7 +94,7 @@
     <script src="js/vendor/marquee.js" charset="utf-8"></script>
     <script type="text/javascript">
       $('#bottomMarquee').marquee({
-        duration: document.getElementById('bottomMarquee').innerText.length * 40,
+        duration: document.getElementById('bottomMarquee').innerText.length * 10,
         delayBeforeStart: 0,
         gap: 48,
         duplicated: true

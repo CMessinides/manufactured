@@ -1,4 +1,4 @@
-<!-- --- -->
+---
 type: event
 blocks:
   -
@@ -10,4 +10,4 @@ blocks:
   -
     label: date
     data: March 23rd
-<!-- --- -->
+---
