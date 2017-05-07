@@ -69,8 +69,6 @@ function Composer() {
     }
     if (nextTargets.length) {
       let nextTarget = nextTargets.pop();
-      console.log('Next target:');
-      console.log(nextTarget);
       cursor.click(nextTarget, revealBlocks, [nextTargets]);
     } else {
       cursor.click(colorBtn, colorItem, [

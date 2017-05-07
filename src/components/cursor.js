@@ -19,15 +19,6 @@ function Cursor(id, context) {
         targetY = _getRandomInt(minY, maxY),
         vec1 = Math.abs(this.x - targetX),
         vec2 = Math.abs(this.y - targetY);
-    console.log(`Path to ${target}:
-      minX: ${minX}
-      maxX: ${maxX}
-      minY: ${minY}
-      maxY: ${maxY}
-      targetX: ${targetX}
-      targetY: ${targetY}
-      vec1: ${vec1}
-      vec2: ${vec2}`);
     setPace(vec1, vec2);
     this.x = targetX;
     this.y = targetY;
