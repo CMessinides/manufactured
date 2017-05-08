@@ -15,7 +15,6 @@ const SanityController = {
 
   },
   filter: function(comp) {
-    console.log('Filtered!');
     return comp;
   }
 }

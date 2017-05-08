@@ -131,16 +131,14 @@ function Composer() {
     stepThroughCycle();
   };
 
-  this.break = function () {};
-
-  this.restart = function () {};
-
   // this is a
   function stepThroughCycle() {
-    cursor.click(importBtn, handleNextItem, [items.firstElementChild]);
+    cursor.click(importBtn, cursor).then(function () {
+      handleNextItem(items.firstElementChild);
+    });
   }
 
-  function handleNextItem(btn, target) {
+  function handleNextItem(target) {
     let item = getNextItem(target);
     let template = templateFactory.prepare(item.type);
     let comp = item.compose(template);
@@ -172,36 +170,39 @@ function Composer() {
   function revealBlocks(currentTarget, nextTargets) {
     if (currentTarget) {
       currentTarget.classList.add('is-revealed');
-      console.log('Current target:');
-      console.log(currentTarget);
     }
     if (nextTargets.length) {
       let nextTarget = nextTargets.pop();
-      cursor.click(nextTarget, revealBlocks, [nextTargets]);
+      cursor.click(nextTarget, cursor).then(function () {
+        revealBlocks(nextTarget, nextTargets);
+      });
     } else {
-      cursor.click(colorBtn, colorItem, [workbench.firstElementChild, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1, 4)]);
+      cursor.click(colorBtn, cursor).then(function () {
+        colorItem(workbench.firstElementChild, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1, 4));
+      });
     }
   }
 
-  function colorItem(btn, target, remainingCount) {
+  function colorItem(target, remainingCount) {
     __WEBPACK_IMPORTED_MODULE_1__item__["a" /* Item */].prototype.color(target);
     remainingCount--;
     if (remainingCount) {
-      window.setTimeout(colorItem, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1200, 1800), btn, target, remainingCount);
+      window.setTimeout(colorItem, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1200, 1800), target, remainingCount);
     } else {
       window.setTimeout(function () {
-        cursor.click(exportBtn, resetCycle, [target]);
+        cursor.click(exportBtn, cursor).then(function () {
+          resetCycle(workbench.firstElementChild);
+        });
       }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1000, 1600));
     }
   }
 
-  function resetCycle(btn, target) {
-    console.log(target);
-    target.classList.add('is-finished');
+  function resetCycle(target) {
     target.addEventListener('transitionend', function () {
-      workbench.innerHTML = '';
+      target.remove();
       stepThroughCycle(); // restart the whole animation process
     }, { once: true });
+    target.classList.add('is-finished');
   }
 }
 
@@ -284,11 +285,11 @@ function Cursor(id, context) {
     el.style.transform = 'translate(' + this.x + 'px,' + this.y + 'px)';
   };
 
-  this.click = function (target, callback, args) {
-    el.addEventListener('transitionend', function () {
-      args ? callback(target, ...args) : callback(target);
-    }, { once: true });
-    this.moveTo(target);
+  this.click = function (target, cursor) {
+    return new Promise(function (resolve, reject) {
+      el.addEventListener('transitionend', resolve, { once: true });
+      cursor.moveTo(target);
+    });
   };
 }
 
@@ -363,7 +364,6 @@ const SanityController = {
   },
   decay: function () {},
   filter: function (comp) {
-    console.log('Filtered!');
     return comp;
   }
 };

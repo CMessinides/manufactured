@@ -25,11 +25,11 @@ function Cursor(id, context) {
     el.style.transform = 'translate(' + this.x + 'px,' + this.y + 'px)';
   };
 
-  this.click = function(target, callback, args) {
-    el.addEventListener('transitionend', function() {
-      args ? callback(target, ...args) : callback(target)
-    }, {once: true});
-    this.moveTo(target);
+  this.click = function(target, cursor) {
+    return new Promise(function(resolve,reject) {
+      el.addEventListener('transitionend', resolve, {once: true})
+      cursor.moveTo(target);
+    })
   }
 }
 
