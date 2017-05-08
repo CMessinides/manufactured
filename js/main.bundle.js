@@ -187,13 +187,13 @@ function Composer() {
     __WEBPACK_IMPORTED_MODULE_1__item__["a" /* Item */].prototype.color(target);
     remainingCount--;
     if (remainingCount) {
-      window.setTimeout(colorItem, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1200, 1800), target, remainingCount);
+      cursor.click(colorBtn, cursor).then(function () {
+        colorItem(target, remainingCount);
+      });
     } else {
-      window.setTimeout(function () {
-        cursor.click(exportBtn, cursor).then(function () {
-          resetCycle(workbench.firstElementChild);
-        });
-      }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["a" /* _getRandomInt */])(1000, 1600));
+      cursor.click(exportBtn, cursor).then(function () {
+        resetCycle(workbench.firstElementChild);
+      });
     }
   }
 
@@ -267,7 +267,7 @@ function Cursor(id, context) {
 
   function setPace(vec1, vec2) {
     el.style.transitionDuration = (Math.floor(Math.sqrt(Math.pow(vec1, 2) + Math.pow(vec2, 2))) * 2).toString() + 'ms';
-    el.style.transitionDelay = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util__["a" /* _getRandomInt */])(180, 500) + 'ms';
+    el.style.transitionDelay = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util__["a" /* _getRandomInt */])(300, 800) + 'ms';
   };
 
   this.moveTo = function (target) {

@@ -7,7 +7,7 @@ function Cursor(id, context) {
 
   function setPace(vec1,vec2) {
     el.style.transitionDuration = (Math.floor(Math.sqrt(Math.pow(vec1, 2) + Math.pow(vec2, 2))) * 2).toString() + 'ms';
-    el.style.transitionDelay = _getRandomInt(180, 500) + 'ms';
+    el.style.transitionDelay = _getRandomInt(300, 800) + 'ms';
   };
 
   this.moveTo = function(target) {

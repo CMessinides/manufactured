@@ -75,16 +75,13 @@ function Composer() {
     Item.prototype.color(target);
     remainingCount--;
     if (remainingCount) {
-      window.setTimeout(colorItem, _getRandomInt(1200,1800), target, remainingCount);
+      cursor.click(colorBtn, cursor).then(function() {
+        colorItem(target, remainingCount);
+      });
     } else {
-      window.setTimeout(
-        function() {
-          cursor.click(exportBtn, cursor).then(function() {
-            resetCycle(workbench.firstElementChild)
-          });
-        },
-        _getRandomInt(1000,1600)
-      )
+      cursor.click(exportBtn, cursor).then(function() {
+        resetCycle(workbench.firstElementChild);
+      });
     }
   }
 
