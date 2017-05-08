@@ -16,6 +16,7 @@ function Composer() {
 
   // this is just a proxy for the animation cycle
   this.start = function() {
+    window.setTimeout(function() { window.location.reload() }, (15 * 60 * 1000)); // reset in 15 minutes
     stepThroughCycle();
   }
 
