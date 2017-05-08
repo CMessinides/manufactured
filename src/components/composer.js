@@ -32,9 +32,11 @@ function Composer() {
     let comp = item.compose(template);
 
     comp = SanityController.filter(comp);
-    comp.addEventListener('animationend', function() {
+    let eventFn = function() {
+      comp.removeEventListener('animationend', eventFn);
       revealBlocks(null, [].slice.call(comp.querySelectorAll('.Template-block')).reverse());
-    }, {once: true});
+    }
+    comp.addEventListener('animationend', eventFn);
     workbench.appendChild(comp);
   }
 
@@ -43,7 +45,11 @@ function Composer() {
     // animate the belt to hide the first item
     items.style.transform = 'translateY(-' + offset + 'px)';
     // wait for the transition, then remove and replace the item
-    items.addEventListener('transitionend', rotateItems, {once: true});
+    let eventFn = function() {
+      items.removeEventListener('transitionend', eventFn);
+      rotateItems;
+    }
+    items.addEventListener('transitionend', rotateItems);
     // return the item
     return new Item(el);
   }
@@ -86,10 +92,12 @@ function Composer() {
   }
 
   function resetCycle(target) {
-    target.addEventListener('transitionend', function() {
+    let eventFn = function() {
+      target.removeEventListener('transitionend', eventFn);
       target.remove();
-      stepThroughCycle(); // restart the whole animation process
-    },{ once: true });
+      stepThroughCycle();
+    }
+    target.addEventListener('transitionend', eventFn);
     target.classList.add('is-finished');
   }
 }

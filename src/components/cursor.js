@@ -27,7 +27,11 @@ function Cursor(id, context) {
 
   this.click = function(target, cursor) {
     return new Promise(function(resolve,reject) {
-      el.addEventListener('transitionend', resolve, {once: true})
+      let eventFn = function() {
+        el.removeEventListener('transitionend', eventFn);
+        resolve();
+      }
+      el.addEventListener('transitionend', eventFn)
       cursor.moveTo(target);
     })
   }
