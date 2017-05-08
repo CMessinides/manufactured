@@ -97,7 +97,7 @@ function Composer() {
     console.log(target);
     target.classList.add('is-finished');
     target.addEventListener('transitionend', function() {
-      workbench.removeChild(target);
+      workbench.innerHTML = '';
       stepThroughCycle(); // restart the whole animation process
     },{ once: true });
   }
